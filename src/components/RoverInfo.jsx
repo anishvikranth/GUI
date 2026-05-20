@@ -28,6 +28,7 @@ export function RoverInfo() {
     : Array(6).fill(null);
 
   const fmt = (v) => v?.toFixed(1) ?? '—';
+  const fmtInt = (v) => v != null ? Math.round(v).toString() : '—';
 
   return (
     <div className="bg-black border-2 border-red-600 rounded-lg p-3 w-64 font-mono">
@@ -85,7 +86,7 @@ export function RoverInfo() {
             <span key={lbl} className="text-gray-600 text-xs">{lbl}</span>
           ))} */}
           {driveValues.map((v, i) => (
-            <span key={i} className="text-gray-300 text-xs tabular-nums">{fmt(v)}</span>
+            <span key={i} className="text-gray-300 text-xs tabular-nums">{fmtInt(v)}</span>
           ))}
         </div>
 

@@ -3,7 +3,7 @@ import { useArmState } from '../ros/hooks/useArmState';
 import { useInputSpace } from '../ros/hooks/useInputSpace';
 
 // ─── Kinematics config ───────────────────────────────────────────────────────
-const L = { upper: 118, forearm: 50, wrist: 50 };
+const L = { shoulder: 0.46 * 250, elbow: 0.2 * 250, wrist: 0.15 * 250 };
 
 const SVG_W = 350;
 const SVG_H = 225;
@@ -16,13 +16,13 @@ const DEG2RAD = Math.PI / 180;
 function fk(shoulder, elbow, pitch) {
   const a1 = shoulder;
   const p1 = {
-    x: BASE.x + L.upper * Math.cos(a1),
-    y: BASE.y - L.upper * Math.sin(a1),
+    x: BASE.x + L.shoulder * Math.cos(a1),
+    y: BASE.y - L.shoulder * Math.sin(a1),
   };
   const a2 = a1 + elbow;
   const p2 = {
-    x: p1.x + L.forearm * Math.cos(a2),
-    y: p1.y - L.forearm * Math.sin(a2),
+    x: p1.x + L.elbow * Math.cos(a2),
+    y: p1.y - L.elbow * Math.sin(a2),
   };
   const a3 = a2 + pitch;
   const p3 = {
