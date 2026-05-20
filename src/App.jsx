@@ -6,6 +6,7 @@ import React, { useState } from "react";
 import { NeonAnveshakLogo } from "./components/NeonAnveshakLogo";
 import { MapPanel } from "./components/MapPanel";
 import { ArmVisualizer } from "./components/ArmVisualizer";
+import OrinHealthPanel from "./components/OrinHealthPanel";
 
 function App() {
   const [isStarting, setIsStarting] = useState(false);
@@ -57,7 +58,7 @@ function App() {
             <RoverInfo />
             <CameraPanel />
             <MapPanel />
-            
+            <OrinHealthPanel />
           </div>
         </div>
 
