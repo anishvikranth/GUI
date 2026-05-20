@@ -19,10 +19,10 @@ topics.js: Whichever ROS2 topics you want to use in the GUI, just add them in th
 Still havent figured this thing out.
 
 # Features to be added
-* __Orin health__: We need to add a feature such that there is an arrow on the left side and that will show the status and info about Orin. Click the arrow again to close this small side window.
+* __Orin health__: Frontend has been added, only information has to be extracted from jtop.
 * __Tabs__: Add two tabs so that we can switch between Maintenance Task widgets and Navigation Task widgets. Make the placement of the tabs proper.
 * __Placement__: The widgets are still not placed uniformly in the GUI and it would be better if they are placed uniformly with no random spaces in the sides.
-* __Camera Panel__: The Camera Panel widget takes too much space and it would be better if there were only three sliders and we choose via dropdown or some other method to select which camera we want to alter. This will reduce the widget size for putting other components.
+* __Camera Panel__: Camera Panel frontend works however backend has to be done using ROS2 service calls.
 * __Camera Feed__: A widget that will take camera feed from the webcameras and place it in the GUI. We will click on this to send the location for the arm to go autonomously to. 
 * __Map Widget__: There are some problems with the Map widget, some of them being 'Follow Rover' button does not work. These issues mainly came when we ported from the Python-based GUI to React-based GUI.
 * __Arm Info__: Some more arm information would be needed, like "Goal received", "Goal not reachable", "Distance from goal" and stuff like this. This is dependent on the final pipeline we decide for the competition, and this feature will keep getting changed during field testing.    
