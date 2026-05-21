@@ -1,0 +1,7 @@
+fastapi==0.136.1
+nav_msgs==4.9.0
+pydantic==2.13.4
+pydantic_settings==2.14.1
+rclpy==3.3.19
+sensor_msgs==4.9.0
+std_msgs==4.9.0
