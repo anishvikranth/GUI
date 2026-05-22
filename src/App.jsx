@@ -2,6 +2,7 @@ import { NetworkStatus } from "./components/NetworkStatus";
 import { RoverInfo } from "./components/RoverInfo";
 import { Title } from "./components/Title";
 import { CameraPanel } from "./components/CameraPanel";
+import CameraFeed from "./components/CameraFeed"
 import React, { useState } from "react";
 import { NeonAnveshakLogo } from "./components/NeonAnveshakLogo";
 import { MapPanel } from "./components/MapPanel";
@@ -9,7 +10,7 @@ import { ArmVisualizer } from "./components/ArmVisualizer";
 import OrinHealthPanel from "./components/OrinHealthPanel";
 
 // Maintenance imports
-import Maintenance_tab from './components/Maintenance_tab';
+// import Maintenance_tab from './components/Maintenance_tab';
 import './index.css';
 
 function App() {
@@ -86,6 +87,11 @@ function App() {
                 <NetworkStatus />
                 <CameraPanel />
                 <OrinHealthPanel />
+                {/* Large Primary Feed */}
+                <CameraFeed width="500px" height="400px" feed_name="1" />
+                
+                {/* Small Secondary Feed (if you want to call it again) */}
+                <CameraFeed width="900px" height="400px" feed_name="2"/>
               </>
             )}
 
@@ -97,6 +103,12 @@ function App() {
                 <CameraPanel />
                 <MapPanel />
                 <OrinHealthPanel />
+                <CameraFeed />
+                {/* Large Primary Feed */}
+                <CameraFeed width="500px" height="400px" feed_name="1" />
+                
+                {/* Small Secondary Feed (if you want to call it again) */}
+                <CameraFeed width="900px" height="400px" feed_name="2"/>
               </>
             )}
 
