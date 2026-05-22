@@ -19,9 +19,13 @@ dist-ssr
 .DS_Store
 *.suo
 *.ntvs*
-*.njsproj
+*.njsprojt 
 *.sln
 *.sw?
 
 # codex
 .codex
+
+venv/
+__pycache__/
+*.pyc

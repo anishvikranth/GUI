@@ -4,9 +4,7 @@ import { useState, useCallback } from "react";
 
 const CAMERAS = [
   { id: 1, label: "Camera 1" },
-  { id: 2, label: "Camera 2" },
-  { id: 3, label: "Camera 3" },
-  { id: 4, label: "Camera 4" },
+ 
 ];
 
 const CONTROLS = [
@@ -74,6 +72,11 @@ function CameraBlock({ cam, values, onChange }) {
       <p className="text-gray-500 text-xs uppercase tracking-widest mb-0.5">
         {cam.label}
       </p>
+      <img
+        src="http://127.0.0.1:8000/api/v1/camera/feed"
+        alt="Camera Feed"
+        className="w-full h-40 object-cover border border-red-500 rounded mb-2"
+      />
       {CONTROLS.map((ctrl) => (
         <Slider key={ctrl.key} ctrl={ctrl} value={values[ctrl.key]} onChange={handleChange} />
       ))}
