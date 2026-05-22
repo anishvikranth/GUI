@@ -103,12 +103,11 @@ function App() {
                 <CameraPanel />
                 <MapPanel />
                 <OrinHealthPanel />
-                <CameraFeed />
                 {/* Large Primary Feed */}
-                <CameraFeed width="500px" height="400px" feed_name="1" />
+                <CameraFeed width="900px" height="400px" feed_name="1" />
                 
                 {/* Small Secondary Feed (if you want to call it again) */}
-                <CameraFeed width="900px" height="400px" feed_name="2"/>
+                <CameraFeed width="500px" height="400px" feed_name="2"/>
               </>
             )}
 
