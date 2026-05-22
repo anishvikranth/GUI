@@ -7,17 +7,19 @@ export function RoverInfo() {
     gnss, 
     arm_pwm: armPWM, 
     drive_pwm: drivePWM,
+    drive_mode: mode,
+    arm_mode: armMode,  
     connected 
   } = useRoverState();
 
-  const x        = odom?.position?.x?.toFixed(3)      ?? '—';
-  const y        = odom?.position?.y?.toFixed(3)      ?? '—';
-  const theta    = odom?.position?.z?.toFixed(3)      ?? '—';
-  const velocity = vel?.velocity?.linear?.toFixed(2)  ?? '—';
-  const omega    = vel?.velocity?.angular?.toFixed(2) ?? '—';
-  const lat      = gnss?.latitude?.toFixed(6)        ?? '—';
-  const long     = gnss?.longitude?.toFixed(6)       ?? '—';
-  
+  const x        = odom?.position.x.toFixed(3)      ?? '—';
+  const y        = odom?.position.y.toFixed(3)      ?? '—';
+  const theta    = odom?.position.z.toFixed(3)      ?? '—';
+  const velocity = vel?.velocity.linear.toFixed(2)  ?? '—';
+  const omega    = vel?.velocity.angular.toFixed(2) ?? '—';
+  const lat      = gnss?.latitude.toFixed(6)        ?? '—';
+  const long     = gnss?.longitude.toFixed(6)       ?? '—';
+
   const armValues = armPWM
     ? [armPWM.base, armPWM.shoulder, armPWM.elbow, armPWM.pitch, armPWM.roll, armPWM.gripper]
     : Array(6).fill(null);
@@ -26,17 +28,27 @@ export function RoverInfo() {
     ? [drivePWM.front_left, drivePWM.front_right, drivePWM.middle_left, drivePWM.middle_right, drivePWM.back_left, drivePWM.back_right]
     : Array(6).fill(null);
 
-  const fmt = (v) => (v !== null && v !== undefined) ? v.toFixed(1) : '—';
+  const fmt    = (v) => v != null ? v.toFixed(1) : '—';
+  const fmtInt = (v) => v != null ? Math.round(v).toString() : '—';
+
+  const PWMRow = ({ labels, values, fmt }) => (
+    <div className="grid grid-cols-6 gap-x-1 text-center">
+      {labels.map((lbl, i) => (
+        <div key={lbl} className="flex flex-col">
+          <span className="text-gray-600 text-[10px]">{lbl}</span>
+          <span className="text-gray-300 text-[10px] tabular-nums">{fmt(values[i])}</span>
+        </div>
+      ))}
+    </div>
+  );
 
   return (
-    <div className="bg-black border-2 border-red-600 rounded-lg p-3 w-64 font-mono">
+    <div className="bg-black border-2 border-red-600 rounded-lg p-3 w-72 font-mono">
 
-      {/* Title */}
       <h2 className="text-red-600 text-2xl font-bold border-b border-red-600 pb-1 mb-3">
-        Rover Info {!connected && <span className="text-xs text-red-500 animate-pulse">(OFFLINE)</span>}
+        Rover Info
       </h2>
 
-      {/* Odom / velocity / GNSS */}
       <div className="grid grid-cols-2 gap-x-4 gap-y-2 text-sm">
         <div className="flex flex-col gap-2">
           <div>
@@ -47,35 +59,43 @@ export function RoverInfo() {
           </div>
           <div>
             <p className="text-gray-500 text-xs uppercase tracking-widest">Velocity</p>
-            <p className="text-gray-300">v &nbsp;&nbsp;{velocity}</p>
-            <p className="text-gray-300">ω &nbsp;&nbsp;{omega}</p>
+            <p className="text-gray-300">{velocity} m/s</p>
+          </div>
+          <div>
+            <p className="text-gray-500 text-xs uppercase tracking-widest">Omega</p>
+            <p className="text-gray-300">{omega} rad/s</p>
+          </div>
+        </div>
+        <div className="flex flex-col gap-2">
+          <div>
+            <p className="text-gray-500 text-xs uppercase tracking-widest">Mode</p>
+            <p className="text-gray-300">Drive {mode ?? '—'}</p>
+            <p className="text-gray-300">Arm {arm_mode ?? '—'}</p>
           </div>
           <div>
             <p className="text-gray-500 text-xs uppercase tracking-widest">GNSS</p>
-            <p className="text-gray-300">lat {lat}</p>
-            <p className="text-gray-300">lon {long}</p>
+            <p className="text-gray-300 text-xs">Lat {lat}</p>
+            <p className="text-gray-300 text-xs">Lon {long}</p>
           </div>
-        </div>
 
-        <div className="flex flex-col gap-2 border-l border-gray-800 pl-4">
-          <div>
-            <p className="text-gray-500 text-xs uppercase tracking-widest">Arm PWM</p>
-            <div className="grid grid-cols-2 gap-x-2">
-              {armValues.map((v, i) => (
-                <p key={i} className="text-gray-300 text-xs">{fmt(v)}</p>
-              ))}
-            </div>
-          </div>
-          <div>
-            <p className="text-gray-500 text-xs uppercase tracking-widest">Drive PWM</p>
-            <div className="grid grid-cols-2 gap-x-2">
-              {driveValues.map((v, i) => (
-                <p key={i} className="text-gray-300 text-xs">{fmt(v)}</p>
-              ))}
-            </div>
-          </div>
         </div>
       </div>
+
+      <div className="mt-2 pt-1 border-t border-gray-800 flex flex-col gap-2">
+        <p className="text-gray-500 text-xs uppercase tracking-widest text-center">Arm</p>
+        <PWMRow
+          labels={['B', 'S', 'E', 'P', 'R', 'G']}
+          values={armValues}
+          fmt={fmt}
+        />
+        <p className="text-gray-500 text-xs uppercase tracking-widest text-center">Drive</p>
+        <PWMRow
+          labels={['FR', 'FL', 'MR', 'ML', 'BR', 'BL']}
+          values={driveValues}
+          fmt={fmtInt}
+        />
+      </div>
+
     </div>
   );
 }
