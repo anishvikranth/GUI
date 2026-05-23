@@ -12,13 +12,40 @@ export function RoverInfo() {
     connected 
   } = useRoverState();
 
-  const x        = odom?.position.x.toFixed(3)      ?? '—';
-  const y        = odom?.position.y.toFixed(3)      ?? '—';
-  const theta    = odom?.position.z.toFixed(3)      ?? '—';
-  const velocity = vel?.velocity.linear.toFixed(2)  ?? '—';
-  const omega    = vel?.velocity.angular.toFixed(2) ?? '—';
-  const lat      = gnss?.latitude.toFixed(6)        ?? '—';
-  const long     = gnss?.longitude.toFixed(6)       ?? '—';
+  const x =
+    odom?.position?.x != null
+      ? odom.position.x.toFixed(3)
+      : '—';
+
+  const y =
+    odom?.position?.y != null
+      ? odom.position.y.toFixed(3)
+      : '—';
+
+  const theta =
+    odom?.position?.z != null
+      ? odom.position.z.toFixed(3)
+      : '—';
+
+  const velocity =
+    vel?.velocity?.linear != null
+      ? vel.velocity.linear.toFixed(2)
+      : '—';
+
+  const omega =
+    vel?.velocity?.angular != null
+      ? vel.velocity.angular.toFixed(2)
+      : '—';
+
+  const lat =
+    gnss?.latitude != null
+      ? gnss.latitude.toFixed(6)
+      : '—';
+
+  const long =
+    gnss?.longitude != null
+      ? gnss.longitude.toFixed(6)
+      : '—';
 
   const armValues = armPWM
     ? [armPWM.base, armPWM.shoulder, armPWM.elbow, armPWM.pitch, armPWM.roll, armPWM.gripper]
@@ -70,7 +97,7 @@ export function RoverInfo() {
           <div>
             <p className="text-gray-500 text-xs uppercase tracking-widest">Mode</p>
             <p className="text-gray-300">Drive {mode ?? '—'}</p>
-            <p className="text-gray-300">Arm {arm_mode ?? '—'}</p>
+            <p className="text-gray-300">Arm {armMode ?? '—'}</p>
           </div>
           <div>
             <p className="text-gray-500 text-xs uppercase tracking-widest">GNSS</p>
