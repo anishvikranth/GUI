@@ -2,13 +2,20 @@ import { NetworkStatus } from "./components/NetworkStatus";
 import { RoverInfo } from "./components/RoverInfo";
 import { Title } from "./components/Title";
 import { CameraPanel } from "./components/CameraPanel";
+import { VisionInfo } from "./components/VisionInfo";
+
 import React, { useState } from "react";
 import { NeonAnveshakLogo } from "./components/NeonAnveshakLogo";
 import { MapPanel } from "./components/MapPanel";
 import { ArmVisualizer } from "./components/ArmVisualizer";
 import OrinHealthPanel from "./components/OrinHealthPanel";
 
+// Maintenance imports
+// import Maintenance_tab from './components/Maintenance_tab';
+import './index.css';
+
 function App() {
+  const [activeTab, setActiveTab] = useState('main');
   const [isStarting, setIsStarting] = useState(false);
   const [showUI, setShowUI] = useState(false);
 
