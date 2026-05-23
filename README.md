@@ -20,12 +20,13 @@ Still havent figured this thing out.
 
 # Features to be added
 * __Orin health__: Frontend has been added, only information has to be extracted from jtop.
-* __Tabs__: Add two tabs so that we can switch between Maintenance Task widgets and Navigation Task widgets. Make the placement of the tabs proper.
+* __Tabs__: Add two tabs so that we can switch between Maintenance Task widgets and Navigation Task widgets. Make the placement of the tabs proper. (DONE)
 * __Placement__: The widgets are still not placed uniformly in the GUI and it would be better if they are placed uniformly with no random spaces in the sides.
-* __Camera Panel__: Camera Panel frontend works however backend has to be done using ROS2 service calls.
+* __Camera Panel__: Camera Panel frontend works however backend has to be done using ROS2 service calls. (Frontend done - Window)
 * __Camera Feed__: A widget that will take camera feed from the webcameras and place it in the GUI. We will click on this to send the location for the arm to go autonomously to. 
 * __Map Widget__: There are some problems with the Map widget, some of them being 'Follow Rover' button does not work. These issues mainly came when we ported from the Python-based GUI to React-based GUI.
-* __Arm Info__: Some more arm information would be needed, like "Goal received", "Goal not reachable", "Distance from goal" and stuff like this. This is dependent on the final pipeline we decide for the competition, and this feature will keep getting changed during field testing.    
+* __Arm Info__: Some more arm information would be needed, like "Goal received", "Goal not reachable", "Distance from goal" and stuff like this. This is dependent on the final pipeline we decide for the competition, and this feature will keep getting changed during field testing.
+* __Vision Info__: Information about Aruco Markers (ID and Pose), Object detection (Name and Pose) and also Minimum distance of any obstacle from the rover.
 
 # Installation and Development
 
