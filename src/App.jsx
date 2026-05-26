@@ -4,11 +4,15 @@ import { Title } from "./components/Title";
 import { CameraPanel } from "./components/CameraPanel";
 import CameraFeed from "./components/CameraFeed";
 import { VisionInfo } from "./components/VisionInfo";
+import { AstrobioPanel } from "./components/AstrobioPanel";
+
+
 import React, { useState } from "react";
 import { NeonAnveshakLogo } from "./components/NeonAnveshakLogo";
 import { MapPanel } from "./components/MapPanel";
 import { ArmVisualizer } from "./components/ArmVisualizer";
 import OrinHealthPanel from "./components/OrinHealthPanel";
+
 
 // Maintenance imports
 // import Maintenance_tab from './components/Maintenance_tab';
@@ -64,6 +68,7 @@ function App() {
             {/* <button onClick={() => setActiveTab('main')} className={`px-4 py-1 border ${activeTab === 'main' ? 'bg-red-600 text-white' : 'text-red-600 border-red-600'}`}>MAIN SYSTEMS</button> */}
             <button onClick={() => setActiveTab('maintenance')} className={`px-4 py-1 border ${activeTab === 'maintenance' ? 'bg-red-600 text-white' : 'text-red-600 border-red-600'}`}>MAINTENANCE MISSION</button>
             <button onClick={() => setActiveTab('navigation')} className={`px-4 py-1 border ${activeTab === 'navigation' ? 'bg-red-600 text-white' : 'text-red-600 border-red-600'}`}>NAVIGATION MISSION</button>
+            <button onClick={() => setActiveTab('astrobio')} className={`px-4 py-1 border ${activeTab === 'astrobio' ? 'bg-red-600 text-white' : 'text-red-600 border-red-600'}`}>ASTROBIO MISSION</button>
           </div>
 
           {/* Conditional Rendering */}
@@ -89,6 +94,7 @@ function App() {
                 <CameraPanel />
                 <OrinHealthPanel />
                 <VisionInfo />
+                
                 {/* Large Primary Feed */}
                 <CameraFeed width="500px" height="400px" feed_name="1" />
                 
@@ -111,6 +117,13 @@ function App() {
                 
                 {/* Small Secondary Feed (if you want to call it again) */}
                 <CameraFeed width="500px" height="400px" feed_name="2"/>
+              </>
+            )}
+
+            {/* Tab 3: Astrobio */}
+            {activeTab === 'astrobio' && (
+              <>
+                <AstrobioPanel />
               </>
             )}
 

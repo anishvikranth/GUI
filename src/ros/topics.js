@@ -10,5 +10,11 @@ export const TOPICS = {
   ARM_PWM:     '/arm_target_angles',
   DRIVE_PWM:   '/drive_pwm',
   MODE:        '/mode',
-  ARM_MODE:    '/arm_mode'
+  ARM_MODE:    '/arm_mode',
+  DRILL:       '/science/drill/cmd',
+  PUMP:        '/science/pump/cmd',
+  LID1:        '/science/servo/lid1/cmd',
+  LID2:        '/science/servo/lid2/cmd',
+  LID3:        '/science/servo/lid3/cmd',
+  STEPPER:     '/science/stepper/cmd',
 }
