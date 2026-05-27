@@ -13,12 +13,12 @@ export const useEncoderAngles = () => {
     return ({
         connected,
         data: {
-            base: msg.data[0],
-            shoulder: msg.data[1],
-            elbow: msg.data[2],
-            pitch: msg.data[3],
-            roll: msg.data[4],
-            gripper: msg.data[5]
+            pitch: msg.data[0],
+            roll: msg.data[1],
+            gripper: msg.data[2],
+            base: msg.data[3],
+            shoulder: -msg.data[4],
+            elbow: msg.data[5]
         }
     });
 }
