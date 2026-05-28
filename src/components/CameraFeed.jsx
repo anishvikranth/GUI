@@ -89,7 +89,7 @@ const CameraFeed = ({
   return (
 
     <div
-      className="border-2 border-red-600 bg-black relative overflow-hidden group"
+      className="border-2 border-red-600 bg-black relative overflow-hidden group h-full min-h-0 w-full"
       style={{
         width: width,
         height: height,

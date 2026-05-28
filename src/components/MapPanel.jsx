@@ -87,7 +87,10 @@ export function MapPanel() {
   const handleDisableFollow = () => setFollowing(false);
 
   return (
-    <div style={{ height: '250px', width: '500px', position: 'relative' }} className='border-2 border-red-600 rounded-lg overflow-hidden'>
+    <div
+      className="border-2 border-red-600 rounded-lg overflow-hidden h-full min-h-0 w-full"
+      style={{ position: 'relative' }}
+    >
       <MapContainer
         center={[13.349584, 74.791522]}
         zoom={16}

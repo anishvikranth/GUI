@@ -1,4 +1,4 @@
-import { useEffect,useRef,useState} from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useDrill } from '../ros/hooks/useDrill';
 import { useTopic } from '../ros/hooks/useTopic';
 import { TOPICS } from '../ros/topics';
@@ -28,10 +28,10 @@ export function AugerVisualizer() {
 
   /*
     Depth State
-    Starts at 10 cm
+    Starts at 45 cm
   */
   const [depth, setDepth] =
-    useState(10);
+    useState(45);
 
   /*
     Time Reference
@@ -41,6 +41,11 @@ export function AugerVisualizer() {
 
   /*
     Motion Model
+
+    PWM = 255
+    Stepper = 10
+
+    => 5 cm/s
   */
   useEffect(() => {
 
@@ -57,13 +62,13 @@ export function AugerVisualizer() {
         /*
           Velocity Equation
 
-          v = (PWM * Stepper) / 2550
+          v = (PWM * Stepper) / 510
 
-          Units:
-          cm/s
+          Example:
+          255 * 10 / 510 = 5 cm/s
         */
         const velocity =
-          (pwm * stepperValue) / 2550;
+          (pwm * stepperValue) / 510;
 
         /*
           Positive PWM:
@@ -79,12 +84,12 @@ export function AugerVisualizer() {
 
           /*
             Clamp:
-            0 cm to 10 cm
+            0 cm to 45 cm
           */
           newDepth =
             Math.max(
               0,
-              Math.min(10, newDepth)
+              Math.min(45, newDepth)
             );
 
           return newDepth;
@@ -101,15 +106,15 @@ export function AugerVisualizer() {
   /*
     Convert depth to SVG Y position
 
-    10 cm -> top
+    45 cm -> top
     0 cm  -> bottom
   */
   const arrowY =
-    30 + ((10 - depth) / 10) * 240;
+    30 + ((45 - depth) / 45) * 240;
 
   return (
 
-    <div className="bg-black border-2 border-red-600 rounded-xl p-3 font-mono w-fit">
+    <div className="bg-black/40 backdrop-blur-sm border-2 border-red-600 rounded-xl p-3 font-mono h-full w-full flex flex-col">
 
       <h2 className="text-red-600 text-2xl border-b border-red-600 mb-2">
 
@@ -118,7 +123,7 @@ export function AugerVisualizer() {
       </h2>
 
       <svg
-        width="220"
+        width="100%"
         height="320"
         className="bg-zinc-900 rounded-lg"
       >
@@ -134,10 +139,10 @@ export function AugerVisualizer() {
         />
 
         {/* Scale Markings */}
-        {[10,9,8,7,6,5,4,3,2,1,0].map((mark) => {
+        {[45, 40, 35, 30, 25, 20, 15, 10, 5, 0].map((mark) => {
 
           const y =
-            30 + ((10 - mark) / 10) * 240;
+            30 + ((45 - mark) / 45) * 240;
 
           return (
 

@@ -99,8 +99,8 @@ export function CameraPanel({ cameras = CAMERAS }) {
   return (
     <>
       <style>{SLIDER_CSS}</style>
-      <div className="bg-black border-2 border-red-600 rounded-xl p-3 font-mono">
-        <h2 className="text-red-600 text-2xl font-bold border-b border-red-600 pb-1 mb-2">
+      <div className="bg-black/40 backdrop-blur-sm border-2 border-red-600 rounded-xl p-3 font-mono h-full w-full flex flex-col">
+        <h2 className="text-red-600 text-base font-bold border-b border-red-600 pb-1 mb-1.5">
           Camera Panel
         </h2>
         <select
@@ -112,7 +112,7 @@ export function CameraPanel({ cameras = CAMERAS }) {
             <option key={cam.id} value={cam.id}>{cam.label}</option>
           ))}
         </select>
-        <div className="grid grid-cols-1 gap-x-4 gap-y-2 text-sm">
+        <div className="grid grid-cols-1 gap-x-4 gap-y-4 text-sm">
           {cameras
             .filter((cam) => cam.id === selectedId)
             .map((cam) => (

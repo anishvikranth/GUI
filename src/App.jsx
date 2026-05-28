@@ -39,7 +39,7 @@ function App() {
   };
 
   return (
-    <div className="bg-stone-950 min-h-screen flex items-center justify-center relative overflow-hidden p-2">
+    <div className="bg-stone-950 min-h-screen flex items-center justify-center relative overflow-visible p-2">
       
       {/* Start Screen (Disappears when clicked) */}
       {!isStarting && (
@@ -68,6 +68,7 @@ function App() {
           }`}
         > 
           <Title />
+          <OrinHealthPanel></OrinHealthPanel>
           {/* Tab Navigation */}
           <div className="flex gap-4 mt-4 mb-2 font-mono">
             {/* <button onClick={() => setActiveTab('main')} className={`px-4 py-1 border ${activeTab === 'main' ? 'bg-red-600 text-white' : 'text-red-600 border-red-600'}`}>MAIN SYSTEMS</button> */}
@@ -91,53 +92,116 @@ function App() {
               </>
             )} */}
 
-            {/* Tab 1: Maintenance */}
             {activeTab === 'maintenance' && (
-              <>
-                <ArmVisualizer />
-                <NetworkStatus />
-                <CameraPanel />
-                <OrinHealthPanel />
-                <VisionInfo />
-                
-                {/* Large Primary Feed */}
-                <CameraFeed width="500px" height="400px" feed_name="1" />
-                
-                {/* Small Secondary Feed (if you want to call it again) */}
-                <CameraFeed width="900px" height="400px" feed_name="2"/>
-              </>
-            )}
+              <div className="w-full h-[calc(100vh-180px)] grid grid-cols-12 gap-3 overflow-hidden">
 
-            {/* Tab 2: Navigation */}
+                {/* LEFT */}
+                <div className="col-span-5 flex flex-col gap-3 min-h-0">
+
+                  <div className="shrink-0">
+                    <ArmVisualizer />
+                  </div>
+
+                  <div className="grid grid-cols-2 gap-3">
+                    <NetworkStatus />
+                    <VisionInfo />
+                  </div>
+
+                  <div className="shrink-0">
+                    <CameraPanel />
+                  </div>
+
+                </div>
+
+                {/* RIGHT */}
+                <div className="col-span-7 grid grid-rows-2 gap-3 min-h-0">
+
+                  <div className="min-h-0">
+                    <CameraFeed width="100%" height="100%" feed_name="1" />
+                  </div>
+
+                  <div className="min-h-0">
+                    <CameraFeed width="100%" height="100%" feed_name="2" />
+                  </div>
+
+                </div>
+
+              </div>
+            )}
+             
+
             {activeTab === 'navigation' && (
-              <>
-                <NetworkStatus />
-                <RoverInfo />
-                <CameraPanel/>                
-                <MapPanel /> 
-                <OrinHealthPanel />
-                <VisionInfo />
-                {/* Large Primary Feed */}
-                <CameraFeed width="900px" height="400px" feed_name="1" />
-                
-                {/* Small Secondary Feed (if you want to call it again) */}
-                <CameraFeed width="500px" height="400px" feed_name="2"/>
-              </>
+              <div className="w-full h-[calc(100vh-180px)] grid grid-cols-12 gap-3 overflow-hidden">
+
+                {/* TOP ROW */}
+                <div className="col-span-3">
+                  <NetworkStatus />
+                </div>
+
+                <div className="col-span-3">
+                  <RoverInfo />
+                </div>
+
+                {/* SWITCHED HERE */}
+                <div className="col-span-6">
+                  <MapPanel />
+                </div>
+
+                {/* BOTTOM ROW */}
+                <div className="col-span-3">
+                  <CameraPanel />
+                </div>
+
+                <div className="col-span-3">
+                  <VisionInfo />
+                </div>
+
+                <div className="col-span-6">
+                  <CameraFeed
+                    width="100%"
+                    height="100%"
+                    feed_name="1"
+                  />
+                </div>
+
+              </div>
             )}
 
-            {/* Tab 3: Astrobio */}
             {activeTab === 'astrobio' && (
-              <>
-                <AugerVisualizer />
-                {/* < DrillPanel/>
-                < PumpPanel />
-                <LidPanel />
-                <StepperPanel /> */}
-                <AstrobioPanel />
-                <CameraPanel />
-                <CameraFeed width="500px" height="400px" feed_name="1"/>
-                <CameraFeed width="500px" height="400px" feed_name="2"/>
-              </>
+              <div className="w-full h-[calc(100vh-180px)] grid grid-cols-12 gap-3 overflow-hidden">
+
+                {/* LEFT - Auger + Astrobio + CameraPanel stacked */}
+                <div className="col-span-5 flex flex-col gap-3 min-h-0 overflow-hidden">
+
+                  <div className="shrink-0">
+                    <AugerVisualizer />
+                  </div>
+
+                  <div className="shrink-0">
+                    <AstrobioPanel />
+                  </div>
+
+                  {/* CameraPanel fills remaining left space */}
+                  <div className="flex-1 min-h-0">
+                    <CameraPanel />
+                  </div>
+
+                </div>
+
+                {/* RIGHT - Two feeds splitting full height equally */}
+                <div className="col-span-7 flex flex-col gap-3 min-h-0">
+
+                  <div className="flex-1 min-h-0">
+                    <CameraFeed width="100%" height="100%" feed_name="1" />
+                  </div>
+
+                  <div className="flex-1 min-h-0">
+                    <CameraFeed width="100%" height="100%" feed_name="2" />
+                  </div>
+
+                </div>
+
+              </div>
             )}
 
 </div>

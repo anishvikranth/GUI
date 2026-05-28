@@ -94,7 +94,7 @@ export function ArmVisualizer() {
   ];
 
   return (
-    <div className="bg-black border-2 border-red-600 rounded-xl p-3 font-mono flex flex-col gap-3 w-fit">
+    <div className="bg-black border-2 border-red-600 rounded-xl p-3 font-mono flex flex-col gap-3 h-full min-h-0 w-full overflow-hidden">
 
       {/* Header */}
       <div className="flex items-center gap-3 border-b border-red-600 pb-1">

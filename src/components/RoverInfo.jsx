@@ -46,7 +46,7 @@ export function RoverInfo() {
   );
 
   return (
-    <div className="bg-black border-2 border-red-600 rounded-lg p-3 w-72 font-mono">
+    <div className="bg-black border-2 border-red-600 rounded-lg p-3 h-full min-h-0 w-full font-mono overflow-hidden">
 
       <h2 className="text-red-600 text-2xl font-bold border-b border-red-600 pb-1 mb-3">
         Rover Info

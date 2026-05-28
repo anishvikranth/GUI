@@ -22,7 +22,7 @@ export function NetworkStatus() {
   };
 
   return (
-    <div className="bg-black border-2 border-red-600 rounded-xl p-3 flex flex-col gap-2 w-fit font-mono">
+    <div className="bg-black border-2 border-red-600 rounded-xl p-3 flex flex-col gap-2 h-full min-h-0 w-full font-mono">
       <h2 className="text-red-600 font-semibold text-left mb-1 text-2xl border-b">Network Status</h2>
       {devices.map(device => (
         <div key={device.name} className="grid grid-cols-[1fr_1.1fr_0.25fr] items-center px-2 py-1">
