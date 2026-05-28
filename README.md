@@ -11,13 +11,13 @@ then npm install
 then do : npm run dev
 
 Terminal 2
-cd react-dev
+cd react-dev   after that
 ros2 launch rosbridge_server rosbridge_websocket_launch.xml
 
 Terminal 
-cd backend_for_camera
-python3 -m venv venv
-source venv/bin/activate
+cd backend_for_camera after that
+python3 -m venv venv after that
+source venv/bin/activate 
 then install all the pip dependencies:  pip install fastapi uvicorn pyyaml opencv-python aiortc numpy
 then cd backend
 then run: uvicorn app.main:app --reload
