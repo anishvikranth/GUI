@@ -5,7 +5,7 @@ export const useStepper = () => {
 
   const { msg, connected } = useTopic(
     TOPICS.STEPPER,
-    "std_msgs/Float32",
+    "std_msgs/msg/Float32",
     { throttleMs: 100 }
   );
 

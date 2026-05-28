@@ -128,7 +128,7 @@ function App() {
             {/* Tab 3: Astrobio */}
             {activeTab === 'astrobio' && (
               <>
-                {/* <AugerVisualizer /> */}
+                <AugerVisualizer />
                 {/* < DrillPanel/>
                 < PumpPanel />
                 <LidPanel />
