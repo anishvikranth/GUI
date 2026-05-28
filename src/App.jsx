@@ -11,12 +11,17 @@ import React, { useState } from "react";
 import { NeonAnveshakLogo } from "./components/NeonAnveshakLogo";
 import { MapPanel } from "./components/MapPanel";
 import { ArmVisualizer } from "./components/ArmVisualizer";
+import { AugerVisualizer } from './components/AugerVisualizer';
 import OrinHealthPanel from "./components/OrinHealthPanel";
 
 
 // Maintenance imports
 // import Maintenance_tab from './components/Maintenance_tab';
 import './index.css';
+import { DrillPanel } from "./components/DrillPanel";
+import { PumpPanel } from "./components/PumpPanel";
+import { LidPanel } from "./components/LidPanel";
+import { StepperPanel } from "./components/StepperPanel";
 
 function App() {
   const [activeTab, setActiveTab] = useState('main');
@@ -61,14 +66,14 @@ function App() {
           className={`transition-opacity duration-700 ease-in-out h-full w-full ${
             showUI ? "opacity-100" : "opacity-0"
           }`}
-        >
+        > 
           <Title />
           {/* Tab Navigation */}
           <div className="flex gap-4 mt-4 mb-2 font-mono">
             {/* <button onClick={() => setActiveTab('main')} className={`px-4 py-1 border ${activeTab === 'main' ? 'bg-red-600 text-white' : 'text-red-600 border-red-600'}`}>MAIN SYSTEMS</button> */}
-            <button onClick={() => setActiveTab('maintenance')} className={`px-4 py-1 border ${activeTab === 'maintenance' ? 'bg-red-600 text-white' : 'text-red-600 border-red-600'}`}>MAINTENANCE MISSION</button>
-            <button onClick={() => setActiveTab('navigation')} className={`px-4 py-1 border ${activeTab === 'navigation' ? 'bg-red-600 text-white' : 'text-red-600 border-red-600'}`}>NAVIGATION MISSION</button>
-            <button onClick={() => setActiveTab('astrobio')} className={`px-4 py-1 border ${activeTab === 'astrobio' ? 'bg-red-600 text-white' : 'text-red-600 border-red-600'}`}>ASTROBIO MISSION</button>
+            <button onClick={() => setActiveTab('maintenance')} className={`px-4 py-1 rounded-xl border ${activeTab === 'maintenance' ? 'bg-red-600 text-white' : 'text-red-600 border-red-600'}`}>MAINTENANCE MISSION</button>
+            <button onClick={() => setActiveTab('navigation')} className={`px-4 py-1 rounded-xl border ${activeTab === 'navigation' ? 'bg-red-600 text-white' : 'text-red-600 border-red-600'}`}>NAVIGATION MISSION</button>
+            <button onClick={() => setActiveTab('astrobio')} className={`px-4 py-1 rounded-xl border ${activeTab === 'astrobio' ? 'bg-red-600 text-white' : 'text-red-600 border-red-600'}`}>ASTROBIO MISSION</button>
           </div>
 
           {/* Conditional Rendering */}
@@ -108,8 +113,8 @@ function App() {
               <>
                 <NetworkStatus />
                 <RoverInfo />
-                <CameraPanel />
-                <MapPanel />
+                <CameraPanel/>                
+                <MapPanel /> 
                 <OrinHealthPanel />
                 <VisionInfo />
                 {/* Large Primary Feed */}
@@ -123,7 +128,15 @@ function App() {
             {/* Tab 3: Astrobio */}
             {activeTab === 'astrobio' && (
               <>
+                {/* <AugerVisualizer /> */}
+                {/* < DrillPanel/>
+                < PumpPanel />
+                <LidPanel />
+                <StepperPanel /> */}
                 <AstrobioPanel />
+                <CameraPanel />
+                <CameraFeed width="500px" height="400px" feed_name="1"/>
+                <CameraFeed width="500px" height="400px" feed_name="2"/>
               </>
             )}
 

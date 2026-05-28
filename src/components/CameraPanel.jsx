@@ -83,10 +83,10 @@ function CameraBlock({ cam, values, onChange }) {
 
 // ─── Main component ───────────────────────────────────────────────────────────
 
-export function CameraPanel() {
+export function CameraPanel({ cameras = CAMERAS }) {
   const [selectedId, setSelectedId] = useState(1);
   const [state, setState] = useState(
-    () => Object.fromEntries(CAMERAS.map((cam) => [cam.id, makeDefaults()]))
+    () => Object.fromEntries(cameras.map((cam) => [cam.id, makeDefaults()]))
   );
 
   const handleChange = useCallback((camId, key, value) => {
@@ -108,12 +108,12 @@ export function CameraPanel() {
           onChange={(e) => setSelectedId(Number(e.target.value))}
           className="bg-black text-white border border-red-600 rounded px-2 py-1 mb-3 text-sm w-full"
         >
-          {CAMERAS.map((cam) => (
+          {cameras.map((cam) => (
             <option key={cam.id} value={cam.id}>{cam.label}</option>
           ))}
         </select>
         <div className="grid grid-cols-1 gap-x-4 gap-y-2 text-sm">
-          {CAMERAS
+          {cameras
             .filter((cam) => cam.id === selectedId)
             .map((cam) => (
               <CameraBlock
